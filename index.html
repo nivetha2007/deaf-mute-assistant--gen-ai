@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Communication Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>AI Communication Assistant</h1>
+        <p>Empowering Deaf and Mute Communication</p>
+    </header>
+
+    <main>
+        <!-- Section 1: Speech to Text (Hearing -> Text for Deaf user) -->
+        <section id="stt-section" aria-labelledby="stt-heading">
+            <h2 id="stt-heading">Speech to Text</h2>
+            <div class="controls">
+                <button id="start-stt-btn" aria-label="Start recording speech" class="primary-btn">🎤 Start
+                    Recording</button>
+                <div id="recording-indicator" class="hidden" aria-live="polite">🔴 Recording in progress...</div>
+            </div>
+            <textarea id="stt-output" rows="4" aria-label="Transcribed text"
+                placeholder="Transcribed text will appear here..." readonly></textarea>
+        </section>
+
+        <!-- Section 2: Text to Speech (Text -> Speech for Mute user) -->
+        <section id="tts-section" aria-labelledby="tts-heading">
+            <h2 id="tts-heading">Text to Speech</h2>
+            <textarea id="tts-input" rows="4" aria-label="Text to speak" placeholder="Type here to speak..."></textarea>
+            <div class="controls">
+                <label for="voice-select" class="sr-only">Select Voice</label>
+                <select id="voice-select" aria-label="Select voice"></select>
+                <button id="speak-btn" aria-label="Convert text to speech" class="primary-btn">🔊 Speak</button>
+            </div>
+        </section>
+
+        <!-- Section 3: AI Smart Reply Chat -->
+        <section id="ai-chat-section" aria-labelledby="ai-chat-heading">
+            <h2 id="ai-chat-heading">AI Smart Reply Chat</h2>
+            <div id="chat-window" class="chat-window" aria-live="polite" aria-label="Chat history">
+                <!-- Chat messages will be dynamically added here -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" aria-label="Chat message input"
+                    placeholder="Type a message for AI...">
+                <button id="send-btn" aria-label="Send message to AI" class="primary-btn">Send 🚀</button>
+            </div>
+        </section>
+
+        <!-- Section 4: Gesture Recognition Placeholder -->
+        <section id="gesture-section" aria-labelledby="gesture-heading">
+            <h2 id="gesture-heading">Gesture Recognition</h2>
+            <div class="controls">
+                <button id="start-camera-btn" aria-label="Toggle camera for gesture recognition"
+                    class="secondary-btn">📷 Start Camera</button>
+            </div>
+            <div id="camera-placeholder" class="placeholder-area" aria-label="Camera feed disabled">
+                <p id="camera-placeholder-text">Camera feed will appear here. Ready for OpenCV/MediaPipe.</p>
+                <video id="video" autoplay playsinline
+                    style="display: none; width: 100%; height: 100%; border-radius: var(--border-radius); object-fit: cover;"></video>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
