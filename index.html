@@ -4,71 +4,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Communication Assistant</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for modern typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Voxture | AI Communication Assistant</title>
+    <link rel="stylesheet" href="landing.css">
+    <!-- Google Fonts: Outfit for headings, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <header>
-        <h1>AI Communication Assistant</h1>
-        <p>Empowering Deaf and Mute Communication</p>
-    </header>
 
-    <main>
-        <!-- Section 1: Speech to Text (Hearing -> Text for Deaf user) -->
-        <section id="stt-section" aria-labelledby="stt-heading">
-            <h2 id="stt-heading">Speech to Text</h2>
-            <div class="controls">
-                <button id="start-stt-btn" aria-label="Start recording speech" class="primary-btn">🎤 Start
-                    Recording</button>
-                <div id="recording-indicator" class="hidden" aria-live="polite">🔴 Recording in progress...</div>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Vox<span>ture</span></a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Log In</a>
+                <a href="app.html" class="btn btn-primary">Try App</a>
             </div>
-            <textarea id="stt-output" rows="4" aria-label="Transcribed text"
-                placeholder="Transcribed text will appear here..." readonly></textarea>
-        </section>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Section 2: Text to Speech (Text -> Speech for Mute user) -->
-        <section id="tts-section" aria-labelledby="tts-heading">
-            <h2 id="tts-heading">Text to Speech</h2>
-            <textarea id="tts-input" rows="4" aria-label="Text to speak" placeholder="Type here to speak..."></textarea>
-            <div class="controls">
-                <label for="voice-select" class="sr-only">Select Voice</label>
-                <select id="voice-select" aria-label="Select voice"></select>
-                <button id="speak-btn" aria-label="Convert text to speech" class="primary-btn">🔊 Speak</button>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Bridging the Gap in <span class="gradient-text">Communication</span></h1>
+            <p class="hero-tagline">An AI-powered assistant designed to empower deaf and mute individuals with seamless,
+                real-time interactions using Voice, Text, and Gestures.</p>
+            <div class="hero-buttons">
+                <a href="app.html" class="btn btn-primary btn-large">Get Started Now <i
+                        class="fas fa-arrow-right"></i></a>
+                <a href="#about" class="btn btn-secondary btn-large">Learn More</a>
             </div>
-        </section>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-card visual-card">
+                <div class="visual-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="chat-demo">
+                    <div class="chat-msg ai">Hello! How can I help you today?</div>
+                    <div class="chat-msg user">I need to translate my gesture.</div>
+                    <div class="chat-msg ai typing">Translating...</div>
+                </div>
+            </div>
+            <div class="blob shape1"></div>
+            <div class="blob shape2"></div>
+        </div>
+    </section>
 
-        <!-- Section 3: AI Smart Reply Chat -->
-        <section id="ai-chat-section" aria-labelledby="ai-chat-heading">
-            <h2 id="ai-chat-heading">AI Smart Reply Chat</h2>
-            <div id="chat-window" class="chat-window" aria-live="polite" aria-label="Chat history">
-                <!-- Chat messages will be dynamically added here -->
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+        <div class="container section-grid">
+            <div class="visual-stack">
+                <div class="image-box">
+                    <img src="https://images.unsplash.com/photo-1590402494587-44b71d7772f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        alt="Inclusive Communication" class="rounded-img shadow-lg" />
+                    <div class="floating-badge">
+                        <i class="fas fa-universal-access"></i>
+                        <span>100% Accessible</span>
+                    </div>
+                </div>
             </div>
-            <div class="chat-input-area">
-                <input type="text" id="chat-input" aria-label="Chat message input"
-                    placeholder="Type a message for AI...">
-                <button id="send-btn" aria-label="Send message to AI" class="primary-btn">Send 🚀</button>
-            </div>
-        </section>
+            <div class="text-content">
+                <span class="section-subtitle">Our Mission</span>
+                <h2 class="section-title">Empowering Voices, Breaking Silence</h2>
+                <p>For millions of deaf and mute individuals globally, daily communication can often pose significant
+                    barriers. Voxture leverages cutting-edge Artificial Intelligence to provide an intuitive, two-way
+                    communication channel.</p>
+                <p>We aim to foster independence and build an inclusive society where everyone can express themselves
+                    freely and be understood without hesitation.</p>
 
-        <!-- Section 4: Gesture Recognition Placeholder -->
-        <section id="gesture-section" aria-labelledby="gesture-heading">
-            <h2 id="gesture-heading">Gesture Recognition</h2>
-            <div class="controls">
-                <button id="start-camera-btn" aria-label="Toggle camera for gesture recognition"
-                    class="secondary-btn">📷 Start Camera</button>
+                <ul class="check-list">
+                    <li><i class="fas fa-check-circle"></i> Real-time Speech-to-Text conversion</li>
+                    <li><i class="fas fa-check-circle"></i> High-quality Text-to-Speech synthesis</li>
+                    <li><i class="fas fa-check-circle"></i> Advanced AI-assisted smart replies</li>
+                </ul>
             </div>
-            <div id="camera-placeholder" class="placeholder-area" aria-label="Camera feed disabled">
-                <p id="camera-placeholder-text">Camera feed will appear here. Ready for OpenCV/MediaPipe.</p>
-                <video id="video" autoplay playsinline
-                    style="display: none; width: 100%; height: 100%; border-radius: var(--border-radius); object-fit: cover;"></video>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <script src="app.js"></script>
+    <!-- Features Section -->
+    <section class="features section-padding bg-light" id="features">
+        <div class="container center-text">
+            <span class="section-subtitle">What We Offer</span>
+            <h2 class="section-title">Powerful Accessibility Features</h2>
+            <p class="section-desc">A comprehensive suite of tools specifically engineered to overcome communication
+                hurdles seamlessly.</p>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card glass-hover">
+                    <div class="feature-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <h3>Speech to Text</h3>
+                    <p>Instantly transcribe spoken words into readable text. Perfect for understanding hearing
+                        individuals in real-time.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card glass-hover">
+                    <div class="feature-icon"><i class="fas fa-volume-up"></i></div>
+                    <h3>Text to Speech</h3>
+                    <p>Type your thoughts and choose from a variety of natural-sounding voices to speak them out loud
+                        instantly.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card glass-hover">
+                    <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI Smart Chat</h3>
+                    <p>Get AI-generated suggestions and replies to maintain the flow of conversation without typing long
+                        sentences.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="feature-card glass-hover">
+                    <div class="feature-icon"><i class="fas fa-sign-language"></i></div>
+                    <h3>Gesture Recognition</h3>
+                    <p>Integrate with your camera to recognize sign language and map gestures to text or spoken words
+                        automatically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team section-padding" id="team">
+        <div class="container center-text">
+            <span class="section-subtitle">Behind the Project</span>
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-desc">The passionate developers and researchers building the future of inclusive
+                communication tech.</p>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80"
+                            alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Nivetha</h3>
+                        <p>Lead Developer & AI Researcher</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=300&q=80"
+                            alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Alex Chen</h3>
+                        <p>Frontend & Accessibility Expert</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80"
+                            alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>UX/UI Designer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq section-padding bg-light" id="faq">
+        <div class="container">
+            <div class="section-grid">
+                <div class="text-content">
+                    <span class="section-subtitle">Got Questions?</span>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p>Everything you need to know about the product and how it works. Can't find the answer you're
+                        looking for? Reach out to our team.</p>
+                </div>
+
+                <div class="faq-accordion">
+                    <div class="faq-item active">
+                        <button class="faq-question">
+                            Is this application completely free?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, as a final year academic project, all core features including Speech-to-Text and
+                                Text-to-Speech are completely free to use.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Do I need a special camera for gesture recognition?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>No, standard built-in webcams or smartphone cameras are sufficient to capture and process
+                                hand gestures.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Is my data secure and private?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Absolutely. Voice and text processing mostly happens locally on your browser. Any cloud
+                                processing through our AI endpoints is strictly encrypted and never stored.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Can I use this on my mobile phone?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Yes! Our responsive web platform is designed to work seamlessly across desktops, tablets,
+                                and smartphones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-padding" id="contact">
+        <div class="container container-narrow">
+            <div class="center-text margin-bottom">
+                <span class="section-subtitle">Get in Touch</span>
+                <h2 class="section-title">Contact Our Team</h2>
+                <p>Have feedback or want to learn more about our system? Send us a message.</p>
+            </div>
+
+            <div class="contact-card glass-card">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send Message <i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Vox<span>ture</span></a>
+                    <p>Breaking barriers. Empowering voices. An intelligent accessible communication assistant.</p>
+                    <div class="footer-socials">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="app.html">Try App</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for updates on our latest features.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email address" required>
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2026 Voxture. All rights reserved. Final Year Project.</p>
+                <div class="built-with">
+                    Built with <i class="fas fa-heart text-red"></i> by the Voxture Team
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="landing.js"></script>
 </body>
 
 </html>

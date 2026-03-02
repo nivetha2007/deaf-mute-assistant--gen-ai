@@ -1,53 +1,66 @@
-from flask_cors import CORS
+from flask import Flask, send_from_directory, request, jsonify, session, redirect, url_for
 import os
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-from dotenv import load_dotenv
-from google import genai
-
-# Load environment variables from .env file
-load_dotenv()
 
 app = Flask(__name__)
-# Enable CORS for all routes so the frontend can freely communicate with the backend
-CORS(app)
+app.secret_key = os.urandom(24)
+users = {}
 
-# Initialize Gemini client
-# Ensure the GEMINI_API_KEY is set in your .env file
-api_key = os.getenv("GEMINI_API_KEY")
-if not api_key:
-    print("WARNING: GEMINI_API_KEY is not set in the .env file.")
+# Serve your frontend
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
 
-client = genai.Client(api_key=api_key)
+@app.route('/app')
+def app_page():
+    if session.get('user'):
+        return send_from_directory('.', 'app.html')
+    return redirect(url_for('login_page'))
 
+@app.route('/login')
+def login_page():
+    return send_from_directory('.', 'login.html')
+
+@app.route('/signup')
+def signup_page():
+    return send_from_directory('.', 'signup.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('login_page'))
+
+# API for AI chat
 @app.route('/api/generate-response', methods=['POST'])
 def generate_response():
-    try:
-        data = request.get_json()
-        if not data or 'message' not in data:
-            return jsonify({'reply': 'Error: Missing "message" field in JSON payload'}), 400
+    data = request.json
+    message = data.get('message', '')
+    # Example: echo back (replace with actual AI code)
+    return jsonify({"reply": f"You said: {message}"})
 
-        user_message = data['message']
-        
-        # Send the message to the Gemini model
-        response = client.models.generate_content(
-            model="gemini-1.5-flash",
-            contents=user_message,
-        )
-        
-        # Return the AI response in the expected format
-        return jsonify({'reply': response.text})
+@app.route('/api/signup', methods=['POST'])
+def api_signup():
+    data = request.json or {}
+    name = data.get('name', '').strip()
+    email = data.get('email', '').strip().lower()
+    password = data.get('password', '')
+    if not name or not email or not password:
+        return jsonify({'error': 'Missing fields'}), 400
+    if email in users:
+        return jsonify({'error': 'Email already registered'}), 409
+    users[email] = {'name': name, 'password': password}
+    session['user'] = {'email': email, 'name': name}
+    return jsonify({'ok': True})
 
-    except Exception as e:
-        print(f"Error generating response: {e}")
-        return jsonify({'reply': 'An error occurred while connecting to the AI model. Please check the server logs.'}), 500
+@app.route('/api/login', methods=['POST'])
+def api_login():
+    data = request.json or {}
+    email = data.get('email', '').strip().lower()
+    password = data.get('password', '')
+    user = users.get(email)
+    if not user or user['password'] != password:
+        return jsonify({'error': 'Invalid credentials'}), 401
+    session['user'] = {'email': email, 'name': user['name']}
+    return jsonify({'ok': True})
 
 if __name__ == '__main__':
-    print("="*55)
-    print("🚀 Starting AI Communication Assistant Backend...")
-    print("📡 Server running on: http://127.0.0.1:5000")
-    print("🔑 Using model: gemini-1.5-flash")
-    print("="*55)
-    
-    # Run server on local port 5000
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='127.0.0.1', port=5000)

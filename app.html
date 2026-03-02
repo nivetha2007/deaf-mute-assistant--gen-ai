@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxture | App Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="light-mode"> <!-- Starting in light mode -->
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand">
+                <i class="fas fa-hands-asl-interpreting"></i> <span class="brand-text">Vox<strong>ture</strong></span>
+            </a>
+            <button class="collapse-btn" id="collapse-sidebar" aria-label="Collapse Menu">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <!-- Home / Dashboard landing -->
+            <a href="#" class="nav-item active" data-target="home-view">
+                <i class="fas fa-home"></i> <span class="nav-label">Home</span>
+            </a>
+
+            <div class="nav-section-title">Tools</div>
+
+            <a href="#" class="nav-item" data-target="stt-view">
+                <i class="fas fa-microphone-alt"></i> <span class="nav-label">Speech to Text</span>
+            </a>
+            <a href="#" class="nav-item" data-target="tts-view">
+                <i class="fas fa-volume-up"></i> <span class="nav-label">Text to Speech</span>
+            </a>
+            <a href="#" class="nav-item" data-target="chat-view">
+                <i class="fas fa-robot"></i> <span class="nav-label">AI Chat</span>
+            </a>
+            <a href="#" class="nav-item" data-target="gesture-view">
+                <i class="fas fa-sign-language"></i> <span class="nav-label">Gesture Recognition</span>
+            </a>
+
+            <div class="nav-section-title" style="margin-top: 20px;">Personal</div>
+
+            <a href="#" class="nav-item" data-target="profile-view">
+                <i class="far fa-user"></i> <span class="nav-label">Profile</span>
+            </a>
+            <a href="#" class="nav-item" data-target="settings-view">
+                <i class="fas fa-cog"></i> <span class="nav-label">Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="/logout" class="nav-item logout-item">
+                <i class="fas fa-sign-out-alt"></i> <span class="nav-label">Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="mobile-menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!-- Optional Top Logo for when sidebar is collapsed/mobile -->
+                <div class="top-logo-mobile">
+                    <i class="fas fa-hands-asl-interpreting" style="color:var(--primary-color);"></i>
+                    Vox<strong>ture</strong>
+                </div>
+                <h1 class="header-title" id="current-page-title">Home</h1>
+            </div>
+
+            <div class="navbar-right">
+
+                <!-- Dark Mode Toggle -->
+                <button class="nav-icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="far fa-moon"></i>
+                </button>
+
+                <!-- Notification Dropdown -->
+                <div class="dropdown-container">
+                    <button class="nav-icon-btn" id="notif-btn" aria-label="Notifications">
+                        <i class="far fa-bell"></i>
+                        <span class="notif-badge">2</span>
+                    </button>
+                    <div class="dropdown-menu notif-menu" id="notif-menu">
+                        <div class="dropdown-header">Notifications</div>
+                        <div class="dropdown-item">
+                            <div class="notif-icon"><i class="fas fa-magic"></i></div>
+                            <div class="notif-text">
+                                <p>New AI voice models available!</p>
+                                <span>2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <div class="notif-icon bg-green"><i class="fas fa-check"></i></div>
+                            <div class="notif-text">
+                                <p>App successfully updated.</p>
+                                <span>1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Profile Dropdown -->
+                <div class="dropdown-container">
+                    <button class="profile-trigger" id="profile-btn">
+                        <img src="https://ui-avatars.com/api/?name=User+Name&background=4F46E5&color=fff"
+                            alt="User Avatar" class="profile-avatar">
+                        <span class="profile-name">John Doe</span>
+                        <i class="fas fa-chevron-down profile-arrow"></i>
+                    </button>
+                    <div class="dropdown-menu profile-menu" id="profile-menu">
+                        <div class="dropdown-header user-header">
+                            <p class="uname">John Doe</p>
+                            <p class="uemail">john@example.com</p>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item"
+                            onclick="document.querySelector('[data-target=\'profile-view\']').click();"><i
+                                class="far fa-user"></i> My Profile</a>
+                        <a href="#" class="dropdown-item"
+                            onclick="document.querySelector('[data-target=\'settings-view\']').click();"><i
+                                class="fas fa-cog"></i> Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/logout" class="dropdown-item text-danger"><i class="fas fa-sign-out-alt"></i>
+                            Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <div class="content-area">
+
+            <!-- View 0: Home / Overview -->
+            <section id="home-view" class="app-section active">
+                <div class="welcome-banner">
+                    <div>
+                        <h2>Welcome back, John! 👋</h2>
+                        <p>Your communication dashboard is ready. What would you like to do today?</p>
+                    </div>
+                    <img src="https://illustrations.popsy.co/amber/app-launch.svg" alt="Welcome Illustration"
+                        class="banner-img">
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dash-card link-card"
+                        onclick="document.querySelector('[data-target=\'stt-view\']').click();">
+                        <div class="dash-icon"><i class="fas fa-microphone-alt"></i></div>
+                        <h3>Speech to Text</h3>
+                        <p>Transcribe conversations instantly.</p>
+                    </div>
+                    <div class="dash-card link-card"
+                        onclick="document.querySelector('[data-target=\'tts-view\']').click();">
+                        <div class="dash-icon"><i class="fas fa-volume-up"></i></div>
+                        <h3>Text to Speech</h3>
+                        <p>Speak aloud with AI voices.</p>
+                    </div>
+                    <div class="dash-card link-card"
+                        onclick="document.querySelector('[data-target=\'chat-view\']').click();">
+                        <div class="dash-icon"><i class="fas fa-robot"></i></div>
+                        <h3>AI Chat</h3>
+                        <p>Get smart replies and help.</p>
+                    </div>
+                    <div class="dash-card link-card"
+                        onclick="document.querySelector('[data-target=\'gesture-view\']').click();">
+                        <div class="dash-icon"><i class="fas fa-sign-language"></i></div>
+                        <h3>Gesture Rec.</h3>
+                        <p>Translate sign language via camera.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View 1: Speech to Text -->
+            <section id="stt-view" class="app-section" aria-labelledby="stt-heading">
+                <div class="section-card stt-focused-card">
+                    <div class="stt-header-row">
+                        <h2 id="stt-heading"><i class="fas fa-microphone-alt"></i> Speech to Text</h2>
+                        <div id="recording-indicator" class="hidden indicator-badge" aria-live="polite">
+                            <span class="live-dot"></span> Live Recording...
+                        </div>
+                    </div>
+                    <p class="section-desc text-center">Tap the microphone to begin converting your speech into text in
+                        real-time.</p>
+
+                    <div class="large-mic-container">
+                        <button id="start-stt-btn" aria-label="Start recording speech" class="mic-action-btn">
+                            <div class="mic-icon-wrapper">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                            <div class="pulse-ring outline-pulse-1"></div>
+                            <div class="pulse-ring outline-pulse-2"></div>
+                        </button>
+                    </div>
+
+                    <div class="transcript-container">
+                        <div class="transcript-toolbar">
+                            <span class="toolbar-title">Live Transcript</span>
+                            <div class="toolbar-actions">
+                                <button id="stt-copy-btn" class="icon-text-btn" aria-label="Copy transcript"
+                                    title="Copy Text">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                                <button id="stt-clear-btn" class="icon-text-btn danger-text"
+                                    aria-label="Clear transcript" title="Clear Text">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="stt-live-text" class="live-transcript-box" aria-live="polite"
+                            aria-label="Transcribed text display">
+                            <span class="placeholder-text">Transcribed text will appear here automatically as people
+                                speak...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View 2: Text to Speech -->
+            <section id="tts-view" class="app-section" aria-labelledby="tts-heading">
+                <div class="section-card tts-focused-card">
+                    <h2 id="tts-heading"><i class="fas fa-volume-up"></i> Text to Speech</h2>
+                    <p class="section-desc">Type your message, select a voice, and the system will speak it out loud
+                        instantly.</p>
+
+                    <div class="tts-input-container">
+                        <textarea id="tts-input" class="large-tts-input" aria-label="Text to speak"
+                            placeholder="Start typing what you want to say..."></textarea>
+                    </div>
+
+                    <div class="tts-controls-row">
+                        <div class="select-wrapper tts-voice-select">
+                            <i class="fas fa-user-voice select-icon"></i>
+                            <select id="voice-select" aria-label="Select voice"></select>
+                        </div>
+
+                        <div class="tts-action-buttons">
+                            <button id="stop-tts-btn" aria-label="Stop speaking" class="secondary-btn"
+                                title="Stop Audio">
+                                <i class="fas fa-stop"></i>
+                            </button>
+                            <button id="speak-btn" aria-label="Convert text to speech" class="primary-btn tts-play-btn">
+                                <i class="fas fa-play"></i> Speak Aloud
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View 3: AI Smart Reply Chat -->
+            <section id="chat-view" class="app-section" aria-labelledby="ai-chat-heading">
+                <div class="whatsapp-chat-container">
+                    <!-- Chat Header -->
+                    <div class="whatsapp-chat-header">
+                        <div class="chat-header-info">
+                            <div class="ai-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3 id="ai-chat-heading">Voxture Assistant</h3>
+                                <span class="online-status">Online</span>
+                            </div>
+                        </div>
+                        <div class="chat-header-actions">
+                            <button class="nav-icon-btn"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Area -->
+                    <div id="chat-window" class="whatsapp-chat-window" aria-live="polite" aria-label="Chat history">
+                        <!-- Date Badge -->
+                        <div class="chat-date-badge">Today</div>
+
+                        <!-- Initial AI Message -->
+                        <div class="message-wrapper ai-wrapper">
+                            <div class="message-bubble ai-bubble">
+                                Hello! I am your AI communication assistant. Need help phrasing something or
+                                understanding complex text? Just ask.
+                                <span class="message-time">Now</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="whatsapp-input-area">
+                        <button class="icon-btn attach-btn"><i class="fas fa-plus"></i></button>
+                        <div class="input-wrapper-chat">
+                            <input type="text" id="chat-input" aria-label="Chat message input"
+                                placeholder="Type a message...">
+                        </div>
+                        <button id="send-btn" aria-label="Send message to AI" class="send-action-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View 4: Gesture Recognition Placeholder -->
+            <section id="gesture-view" class="app-section" aria-labelledby="gesture-heading">
+                <div class="section-card">
+                    <h2 id="gesture-heading"><i class="fas fa-sign-language"></i> Gesture Recognition</h2>
+                    <p class="section-desc">Translate sign language to text in real-time using your camera.</p>
+
+                    <div class="controls">
+                        <button id="start-camera-btn" aria-label="Toggle camera for gesture recognition"
+                            class="secondary-btn">
+                            <i class="fas fa-camera"></i> Start Camera Feed
+                        </button>
+                    </div>
+
+                    <div id="camera-placeholder" class="placeholder-area" aria-label="Camera feed disabled">
+                        <div>
+                            <i class="fas fa-video-slash"></i>
+                            <p id="camera-placeholder-text">Camera feed will appear here.<br><small>Ready for
+                                    OpenCV/MediaPipe.</small></p>
+                        </div>
+                        <video id="video" autoplay playsinline style="display: none;"></video>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View 5: Profile View -->
+            <section id="profile-view" class="app-section">
+                <div class="section-card">
+                    <h2><i class="far fa-user"></i> My Profile</h2>
+                    <div class="profile-details">
+                        <div class="profile-header-large">
+                            <img src="https://ui-avatars.com/api/?name=User+Name&background=4F46E5&color=fff&size=100"
+                                alt="Avatar">
+                            <div>
+                                <h3>John Doe</h3>
+                                <p>Free Tier User</p>
+                                <button class="secondary-btn"
+                                    style="margin-top: 10px; padding: 6px 12px; font-size: 0.9rem;">Change
+                                    Avatar</button>
+                            </div>
+                        </div>
+                        <div style="margin-top:2rem;">
+                            <h4>Personal Information</h4>
+                            <div class="settings-group">
+                                <label>Full Name</label>
+                                <input type="text" value="John Doe">
+                            </div>
+                            <div class="settings-group">
+                                <label>Email</label>
+                                <input type="text" value="john@example.com" disabled>
+                            </div>
+                            <button class="primary-btn">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View 6: Settings View -->
+            <section id="settings-view" class="app-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-cog"></i> Settings</h2>
+
+                    <div class="settings-section">
+                        <h4>Application Preferences</h4>
+                        <div class="setting-row">
+                            <div>
+                                <h5>Default Voice Engine</h5>
+                                <p>Select the default text-to-speech engine.</p>
+                            </div>
+                            <select style="max-width: 200px;">
+                                <option>System Default</option>
+                                <option>Google Standard</option>
+                            </select>
+                        </div>
+                        <div class="setting-row">
+                            <div>
+                                <h5>Auto-scroll Chat</h5>
+                                <p>Automatically scroll down when new messages arrive.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-section" style="margin-top: 2rem;">
+                        <h4 style="color:var(--error-color);">Danger Zone</h4>
+                        <div class="setting-row border-danger">
+                            <div>
+                                <h5>Delete Account</h5>
+                                <p>Permanently hide your data and account.</p>
+                            </div>
+                            <button class="danger-btn">Delete Data</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- External Libraries for Gesture Recognition -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <!-- App Logic Scripts -->
+    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>
