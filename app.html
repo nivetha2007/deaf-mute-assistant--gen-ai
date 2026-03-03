@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voxture | App Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
         rel="stylesheet">
@@ -309,102 +309,104 @@
             </section>
 
             <!-- View 4: Gesture Recognition Placeholder -->
-            <section id="gesture-view" class="app-section" aria-labelledby="gesture-heading">
+            <<section id="gesture-view" class="app-section" aria-labelledby="gesture-heading">
                 <div class="section-card">
-                    <h2 id="gesture-heading"><i class="fas fa-sign-language"></i> Gesture Recognition</h2>
-                    <p class="section-desc">Translate sign language to text in real-time using your camera.</p>
+                    <h2 id="gesture-heading">
+                        <i class="fas fa-sign-language"></i> Gesture Recognition
+                    </h2>
+                    <p class="section-desc">
+                        Translate sign language to text in real-time using your camera.
+                    </p>
 
                     <div class="controls">
-                        <button id="start-camera-btn" aria-label="Toggle camera for gesture recognition"
-                            class="secondary-btn">
-                            <i class="fas fa-camera"></i> Start Camera Feed
+                        <button id="start-camera-btn" class="secondary-btn">
+                            <i class="fas fa-camera"></i> Start Camera
                         </button>
                     </div>
 
-                    <div id="camera-placeholder" class="placeholder-area" aria-label="Camera feed disabled">
-                        <div>
-                            <i class="fas fa-video-slash"></i>
-                            <p id="camera-placeholder-text">Camera feed will appear here.<br><small>Ready for
-                                    OpenCV/MediaPipe.</small></p>
-                        </div>
-                        <video id="video" autoplay playsinline style="display: none;"></video>
+                    <!-- Camera Display Area -->
+                    <div style="margin-top:20px; text-align:center;">
+                        <video id="video" width="640" height="480" autoplay playsinline
+                            style="border-radius:12px; border:2px solid #ccc;">
+                        </video>
                     </div>
+
                 </div>
-            </section>
+                </section>
 
-            <!-- View 5: Profile View -->
-            <section id="profile-view" class="app-section">
-                <div class="section-card">
-                    <h2><i class="far fa-user"></i> My Profile</h2>
-                    <div class="profile-details">
-                        <div class="profile-header-large">
-                            <img src="https://ui-avatars.com/api/?name=User+Name&background=4F46E5&color=fff&size=100"
-                                alt="Avatar">
-                            <div>
-                                <h3>John Doe</h3>
-                                <p>Free Tier User</p>
-                                <button class="secondary-btn"
-                                    style="margin-top: 10px; padding: 6px 12px; font-size: 0.9rem;">Change
-                                    Avatar</button>
+                <!-- View 5: Profile View -->
+                <section id="profile-view" class="app-section">
+                    <div class="section-card">
+                        <h2><i class="far fa-user"></i> My Profile</h2>
+                        <div class="profile-details">
+                            <div class="profile-header-large">
+                                <img src="https://ui-avatars.com/api/?name=User+Name&background=4F46E5&color=fff&size=100"
+                                    alt="Avatar">
+                                <div>
+                                    <h3>John Doe</h3>
+                                    <p>Free Tier User</p>
+                                    <button class="secondary-btn"
+                                        style="margin-top: 10px; padding: 6px 12px; font-size: 0.9rem;">Change
+                                        Avatar</button>
+                                </div>
                             </div>
-                        </div>
-                        <div style="margin-top:2rem;">
-                            <h4>Personal Information</h4>
-                            <div class="settings-group">
-                                <label>Full Name</label>
-                                <input type="text" value="John Doe">
+                            <div style="margin-top:2rem;">
+                                <h4>Personal Information</h4>
+                                <div class="settings-group">
+                                    <label>Full Name</label>
+                                    <input type="text" value="John Doe">
+                                </div>
+                                <div class="settings-group">
+                                    <label>Email</label>
+                                    <input type="text" value="john@example.com" disabled>
+                                </div>
+                                <button class="primary-btn">Save Changes</button>
                             </div>
-                            <div class="settings-group">
-                                <label>Email</label>
-                                <input type="text" value="john@example.com" disabled>
-                            </div>
-                            <button class="primary-btn">Save Changes</button>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- View 6: Settings View -->
-            <section id="settings-view" class="app-section">
-                <div class="section-card">
-                    <h2><i class="fas fa-cog"></i> Settings</h2>
+                <!-- View 6: Settings View -->
+                <section id="settings-view" class="app-section">
+                    <div class="section-card">
+                        <h2><i class="fas fa-cog"></i> Settings</h2>
 
-                    <div class="settings-section">
-                        <h4>Application Preferences</h4>
-                        <div class="setting-row">
-                            <div>
-                                <h5>Default Voice Engine</h5>
-                                <p>Select the default text-to-speech engine.</p>
+                        <div class="settings-section">
+                            <h4>Application Preferences</h4>
+                            <div class="setting-row">
+                                <div>
+                                    <h5>Default Voice Engine</h5>
+                                    <p>Select the default text-to-speech engine.</p>
+                                </div>
+                                <select style="max-width: 200px;">
+                                    <option>System Default</option>
+                                    <option>Google Standard</option>
+                                </select>
                             </div>
-                            <select style="max-width: 200px;">
-                                <option>System Default</option>
-                                <option>Google Standard</option>
-                            </select>
+                            <div class="setting-row">
+                                <div>
+                                    <h5>Auto-scroll Chat</h5>
+                                    <p>Automatically scroll down when new messages arrive.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
                         </div>
-                        <div class="setting-row">
-                            <div>
-                                <h5>Auto-scroll Chat</h5>
-                                <p>Automatically scroll down when new messages arrive.</p>
+
+                        <div class="settings-section" style="margin-top: 2rem;">
+                            <h4 style="color:var(--error-color);">Danger Zone</h4>
+                            <div class="setting-row border-danger">
+                                <div>
+                                    <h5>Delete Account</h5>
+                                    <p>Permanently hide your data and account.</p>
+                                </div>
+                                <button class="danger-btn">Delete Data</button>
                             </div>
-                            <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider round"></span>
-                            </label>
                         </div>
                     </div>
-
-                    <div class="settings-section" style="margin-top: 2rem;">
-                        <h4 style="color:var(--error-color);">Danger Zone</h4>
-                        <div class="setting-row border-danger">
-                            <div>
-                                <h5>Delete Account</h5>
-                                <p>Permanently hide your data and account.</p>
-                            </div>
-                            <button class="danger-btn">Delete Data</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
         </div>
     </main>
@@ -412,9 +414,11 @@
     <!-- External Libraries for Gesture Recognition -->
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
     <!-- App Logic Scripts -->
-    <script src="app.js"></script>
-    <script src="dashboard.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
 </body>
 
 </html>
